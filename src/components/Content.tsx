@@ -1,13 +1,20 @@
 
 
 import "./style/content.css"
+import { useEffect } from 'react';
 
-const Content = () => {
+type ContentDataType = {
+   temperature?:number
+   mainWeather?:string
+   currentCity?: string
+}
+
+const Content = ({ temperature, mainWeather, currentCity} : ContentDataType) => {
    return (
       <div className="content">
          <img src={require('../images/mist.png')} className="content__weather-img"></img>
-         <div className="content__temperature">22°C</div>
-         <div className="content__city">London</div>
+         <div className="content__temperature">{temperature}°C</div>
+         <div className="content__city">{currentCity}</div>
       </div>
    )
 }

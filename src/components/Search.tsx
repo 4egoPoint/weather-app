@@ -14,7 +14,8 @@ const Search = ({ setCityValue, setInputValue, inputValue }: InputData) => {
    const setCityString = () => {
       inputValue !== "" ? setCityValue(inputValue) : setCityValue("London")
    }
-
+   console.log(inputValue);
+   
    return (
       <div className="search">
          <input onChange={(e) => setInputValue(e.target.value)} className="search__input" type="text" placeholder='city...' />
