@@ -2,12 +2,23 @@
 import { BiSearchAlt } from "react-icons/bi"
 
 import "./style/search.css"
+import { useState } from "react"
 
-const Search = () => {
+type InputData = {
+   setInputValue: React.Dispatch<React.SetStateAction<string>>
+   setCityValue: React.Dispatch<React.SetStateAction<string>>
+   inputValue: string
+}
+
+const Search = ({ setCityValue, setInputValue, inputValue }: InputData) => {
+   const setCityString = () => {
+      inputValue !== "" ? setCityValue(inputValue) : setCityValue("London")
+   }
+
    return (
       <div className="search">
-         <input className="search__input" type="text" placeholder='city' />
-         <button className="search__btn"><BiSearchAlt /></button>
+         <input onChange={(e) => setInputValue(e.target.value)} className="search__input" type="text" placeholder='city...' />
+         <button className="search__btn" onClick={setCityString}><BiSearchAlt /></button>
       </div>
    )
 }

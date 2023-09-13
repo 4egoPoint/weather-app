@@ -7,28 +7,31 @@ import Content from './components/Content';
 import Details from './components/Details';
 import Search from './components/Search';
 import Sun from './components/Sun';
-import{useState} from "react"
+import { useState, useEffect } from "react"
 
 
-let city: string = "London"
 const apiKey: string = "508105b0d2468eacc04c337659224a22"
 
-let humidityData:number
 
-const search = async () => {
-   let response = await fetch(`https://api.openweathermap.org/data/2.5/weather?q=${city}&appid=${apiKey}`)
-   let data = await response.json()
-   humidityData = data.main.humidity
-}
 
 function App() {
+   const [inputValue, setInputValue] = useState<string>("")
+   const [cityValue, setCityValue] = useState<string>("London")
 
+
+
+   useEffect(() => {
+      const search = async () => {
+         let response = await fetch(`https://api.openweathermap.org/data/2.5/weather?q=${cityValue}&appid=${apiKey}`)
+         let data = await response.json()
+      }
+   }, [])
 
    return (
       <div className="app">
          <div className="app__window">
 
-            <Search />
+            <Search inputValue={inputValue} setCityValue={setCityValue} setInputValue={setInputValue} />
 
             <Content />
 
